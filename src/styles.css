@@ -1,1 +1,114 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+
+html, body, nav, div, h1, h2, a, button {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    color: #333;
+    background-color: white;
+}
+
+h2 {
+    color: #304183;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin: 2em 0 1em 0;
+    text-align: center;
+}
+
+p {
+    margin: 1em;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+li:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.left,
+.right {
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 35em) /* tablet */
+{
+    p {
+        margin: 0 0 1em 0;
+    }
+
+    h2 {
+        text-align: left;
+    }
+
+    .left,
+    .right {
+        width: 34%;
+    }
+
+    .left {
+        float: left;
+        margin: 0 2em 1em 0;
+    }
+
+    .right {
+        float: right;
+        margin: 0 0 1em 2em;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    form {
+        width: 80%;
+        margin: 1em auto;
+    }
+}
+
+@media (min-width: 68em) /* desktop */
+{
+    body {
+        background-image: url("assets/img/pattern.jpg");
+        background-repeat: repeat;
+        background-position: 50% 50%;
+        background-size: 50%;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .left,
+    .right {
+        width: 40%;
+    }
+
+    form {
+        width: 60%;
+    }
+
+    form button {
+        margin: 0 0 4em 0;
+    }
+}

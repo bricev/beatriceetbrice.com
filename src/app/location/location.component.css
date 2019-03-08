@@ -1,0 +1,15 @@
+.button {
+    background: #304183;
+    color: #ebe5c3;
+    text-decoration: none;
+    border-radius: .2em;
+    margin: 0;
+    padding: .5em 1em;
+}
+
+@media (min-width: 35em) /* tablet */
+{
+    h2 {
+        margin-top: 0;
+    }
+}

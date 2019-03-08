@@ -1,0 +1,22 @@
+p {
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    cursor: pointer;
+}
+
+@media (min-width: 35em) /* tablet */
+{
+    img {
+        width: 50%;
+    }
+}
+
+@media (min-width: 68em) /* desktop */
+{
+    img {
+        width: 50%;
+    }
+}

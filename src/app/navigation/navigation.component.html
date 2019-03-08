@@ -1,0 +1,10 @@
+<nav [class.open]="isMenuOpen" (click)="toggleMenu()">
+    <button id="menu">Navigation</button>
+    <ul>
+        <li class="blank">&nbsp;</li>
+        <li *ngFor="let section of sections" routerLink="{{section.route}}" routerLinkActive="current" [routerLinkActiveOptions]="{exact: true}">
+            <i class="{{section.css}}"></i> {{section.title}}
+        </li>
+        <li class="blank">&nbsp;</li>
+    </ul>
+</nav>
