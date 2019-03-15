@@ -2,17 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable()
 export class CheckoutService {
     constructor(
+        private loaderService: LoaderService,
         private http: HttpClient
     ) {}
 
     pay(amount): void {
         this.getSession(amount)
             .subscribe(
-                session => this.redirect(session.session)
+                session => {
+                    this.loaderService.start();
+                    this.redirect(session.session);
+                }
             );
     }
 

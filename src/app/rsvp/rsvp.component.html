@@ -1,0 +1,33 @@
+<form (ngSubmit)="checkCode()">
+    <p>
+        Afin de confirmer ou d'infirmer votre présence,
+        nous vous remercions de bien vouloir répondre
+        via ce site avant le <i>31 mai 2019</i>.
+    </p>
+    <p>
+        Durant toute cette période, il est possible de
+        modifier votre réponse autant de fois que nécessaire.
+    </p>
+
+    <h2>Formulaire de réponse</h2>
+    <p>
+        Merci de renseigner le code qui vous a été communiqué
+        sur le faire-part dans le champs ci-dessous :
+    </p>
+
+    <div class="field text">
+        <input [(ngModel)]="code" [ngModelOptions]="{standalone: true}" id="code"
+               name="identifier"
+               autocomplete="off"
+               type="text"
+               pattern="\d+"
+               required>
+        <label for="code">Mon code</label>
+    </div>
+
+    <button id="submit_code" type="submit">
+        <i class="fas fa-check"></i> &nbsp; Valider
+    </button>
+</form>
+
+<app-rsvp-confirmation [rsvp]="rsvp"></app-rsvp-confirmation>

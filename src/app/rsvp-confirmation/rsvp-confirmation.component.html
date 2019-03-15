@@ -1,0 +1,115 @@
+<form *ngIf="rsvp">
+    <h2 class="keep">Confirmation de votre présence</h2>
+
+    <div class="field choice keep">
+        <input id="accept"
+               name="confirmation"
+               type="radio"
+               value="accept"
+               checked>
+        <label for="accept">OUI, je confirme la venue des personnes suivantes :</label>
+
+        <fieldset id="guest_list">
+            <legend>Liste des convives</legend>
+            <ul>
+                <li *ngFor="let guest of rsvp.group.guests; let i=index">
+                    <input type="checkbox" id="guest_{{ i }}" name="guest[]" value="{{ guest.name }}">
+                    <label for="guest_{{ i }}">{{ guest.name }}</label>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <div class="field choice keep">
+        <input id="decline"
+               name="confirmation"
+               type="radio"
+               value="decline">
+        <label for="decline">NON, personne ne pourra malheureusement venir</label>
+    </div>
+
+    <h2>Services durant le mariage</h2>
+
+    <div class="field choice">
+        <input id="babysitter"
+               name="babysitter"
+               type="checkbox"
+               value="true">
+        <label for="babysitter">
+            Nous souhaitons confier notre(nos) enfant(s) à un baby-sitter professionnel.
+            Règlement en direct le soir de la réception auprès des baby-sitters.
+        </label>
+    </div>
+
+    <div class="field choice">
+        <input id="driver"
+               name="driver"
+               type="checkbox"
+               value="true">
+        <label for="driver">
+            Nous souhaitons utiliser un service de chauffeur pour retourner à notre logement en fin de soirée.
+            Règlement en direct le soir de la réception auprès du chauffeur.
+        </label>
+    </div>
+
+    <div class="field choice">
+        <input id="allergy"
+               name="allergy"
+               type="checkbox"
+               value="true">
+        <label for="allergy">
+            Nous souhaitons déclarer une allergie grave : en cochant cette case, une personne prendra contact
+            avec vous 1 mois avant le mariage afin de transmettre les bonnes informations au traiteur.
+        </label>
+    </div>
+
+    <h2>Musique</h2>
+
+    <p>
+        La seconde partie de soirée sera orchestrée par un DJ professionnel.
+        Nous serions heureux que vous partagiez vos préférences musicales afin de contribuer à l'élaboration
+        d'une atmosphère festive et dansante.
+    </p>
+
+    <br>
+
+    <div class="field text">
+        <input id="music60s"
+               name="music60s"
+               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite60sTube : '' }}"
+               type="text"
+               required>
+        <label for="music60s">Mon morceau 60s favori</label>
+    </div>
+
+    <div class="field text">
+        <input id="music70s"
+               name="music70s"
+               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite70sTube : '' }}"
+               type="text"
+               required>
+        <label for="music70s">Mon morceau 70s favori</label>
+    </div>
+
+    <div class="field text">
+        <input id="music80s"
+               name="music80s"
+               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite80sTube : '' }}"
+               type="text"
+               required>
+        <label for="music80s">Mon morceau 80s favori</label>
+    </div>
+
+    <div class="field text">
+        <input id="present_music"
+               name="present_music"
+               value="{{ rsvp.rsvp ? rsvp.rsvp.favoriteContemporaryTube : '' }}"
+               type="text"
+               required>
+        <label for="present_music">Mon morceau récent favori</label>
+    </div>
+
+    <button id="submit_rsvp" type="submit">
+        <i class="far fa-save"></i> &nbsp; Enregistrer
+    </button>
+</form>
