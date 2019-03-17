@@ -19,27 +19,22 @@ import { LoaderState } from './loader';
         trigger('startStop', [
             state('start', style({
                 opacity: .5,
-                visibility: 'visible'
+                display: 'block'
             })),
 
             state('stop', style({
                 opacity: 0,
-                visibility: 'hidden'
+                display: 'none'
             })),
 
             transition('stop => start', [
-                style({ visibility: 'visible' }),
+                style({ display: 'block' }),
                 animate('500ms ease-out')
             ]),
 
-            transition('start => stop', [ //       é_è
-                style({ visibility: 'visible' }),
-                animate('500ms ease-in', style({
-                    opacity: 0
-                })),
-                animate('0s 500ms', style({
-                    visibility: 'hidden'
-                }))
+            transition('start => stop', [
+                style({ display: 'block' }),
+                animate('500ms ease-in')
             ])
         ])
     ]
