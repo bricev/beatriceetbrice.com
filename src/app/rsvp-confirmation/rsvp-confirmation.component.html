@@ -1,4 +1,4 @@
-<form *ngIf="rsvp">
+<form *ngIf="rsvp" [formGroup]="rsvpForm">
     <h2 class="keep">Confirmation de votre présence</h2>
 
     <div class="field choice keep">
@@ -12,9 +12,11 @@
         <fieldset id="guest_list">
             <legend>Liste des convives</legend>
             <ul>
-                <li *ngFor="let guest of rsvp.group.guests; let i=index">
-                    <input type="checkbox" id="guest_{{ i }}" name="guest[]" value="{{ guest.name }}">
-                    <label for="guest_{{ i }}">{{ guest.name }}</label>
+                <li *ngFor="let guest of rsvpForm.controls['guests'].controls; let i=index">
+                    <input [formControl]="guest"
+                           id="guest_{{ i }}"
+                           type="checkbox">
+                    <label for="guest_{{ i }}">&nbsp; {{ comingGuests[i] }}</label>
                 </li>
             </ul>
         </fieldset>
@@ -31,8 +33,8 @@
     <h2>Services durant le mariage</h2>
 
     <div class="field choice">
-        <input id="babysitter"
-               name="babysitter"
+        <input formControlName="needBabysitter"
+               id="babysitter"
                type="checkbox"
                value="true">
         <label for="babysitter">
@@ -42,7 +44,8 @@
     </div>
 
     <div class="field choice">
-        <input id="driver"
+        <input formControlName="needDriver"
+               id="driver"
                name="driver"
                type="checkbox"
                value="true">
@@ -53,7 +56,8 @@
     </div>
 
     <div class="field choice">
-        <input id="allergy"
+        <input formControlName="hasAllergy"
+               id="allergy"
                name="allergy"
                type="checkbox"
                value="true">
@@ -74,36 +78,32 @@
     <br>
 
     <div class="field text">
-        <input id="music60s"
-               name="music60s"
-               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite60sTube : '' }}"
+        <input formControlName="favorite60sTube"
+               id="music60s"
                type="text"
                required>
         <label for="music60s">Mon morceau 60s favori</label>
     </div>
 
     <div class="field text">
-        <input id="music70s"
-               name="music70s"
-               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite70sTube : '' }}"
+        <input formControlName="favorite70sTube"
+               id="music70s"
                type="text"
                required>
         <label for="music70s">Mon morceau 70s favori</label>
     </div>
 
     <div class="field text">
-        <input id="music80s"
-               name="music80s"
-               value="{{ rsvp.rsvp ? rsvp.rsvp.favorite80sTube : '' }}"
+        <input formControlName="favorite80sTube"
+               id="music80s"
                type="text"
                required>
         <label for="music80s">Mon morceau 80s favori</label>
     </div>
 
     <div class="field text">
-        <input id="present_music"
-               name="present_music"
-               value="{{ rsvp.rsvp ? rsvp.rsvp.favoriteContemporaryTube : '' }}"
+        <input formControlName="favoriteContemporaryTube"
+               id="present_music"
                type="text"
                required>
         <label for="present_music">Mon morceau récent favori</label>
