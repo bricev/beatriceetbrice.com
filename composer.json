@@ -1,0 +1,27 @@
+{
+  "name": "bricev/beatriceetbrice.com",
+  "description": "Béa & Brice wedding web-service",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Brice Vercoustre",
+      "email": "brice@vercoustre.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "google/apiclient": "2.x-dev",
+    "psr/http-message": "^1.0",
+    "stripe/stripe-php": "^6.0",
+    "symfony/config": "^4.0",
+    "symfony/dependency-injection": "^4.0",
+    "symfony/http-kernel": "^4.0",
+    "symfony/routing": "^4.0",
+    "symfony/yaml": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wedding\\": "backend/"
+    }
+  }
+}

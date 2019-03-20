@@ -1,0 +1,23 @@
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+@media (min-width: 35em) /* tablet */
+{
+    img {
+        width: 50%;
+    }
+}
+
+@media (min-width: 68em) /* desktop */
+{
+    img {
+        width: 50%;
+    }
+}

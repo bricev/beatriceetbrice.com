@@ -1,0 +1,118 @@
+<form *ngIf="rsvp"
+      [formGroup]="rsvpForm"
+      (ngSubmit)="saveRsvp()"
+      [@validation]="submitted ? 'hide' : 'show'">
+    <h2 class="keep">Confirmation de votre présence</h2>
+
+    <div class="field choice keep">
+        <input id="accept"
+               name="confirmation"
+               type="radio"
+               value="accept"
+               checked>
+        <label for="accept">OUI, je confirme la venue des personnes suivantes :</label>
+
+        <fieldset id="guest_list">
+            <legend>Liste des convives</legend>
+            <ul>
+                <li *ngFor="let guest of rsvpForm.controls['guests'].controls; let i=index">
+                    <input [formControl]="guest"
+                           id="guest_{{ i }}"
+                           type="checkbox">
+                    <label for="guest_{{ i }}">&nbsp; {{ guests[i] }}</label>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <div class="field choice keep">
+        <input id="decline"
+               name="confirmation"
+               type="radio"
+               value="decline">
+        <label for="decline">NON, personne ne pourra malheureusement venir</label>
+    </div>
+
+    <h2>Services durant le mariage</h2>
+
+    <div class="field choice">
+        <input formControlName="needBabysitter"
+               id="babysitter"
+               type="checkbox"
+               value="true">
+        <label for="babysitter">
+            Nous souhaitons confier notre(nos) enfant(s) à un baby-sitter professionnel.
+            Règlement en direct le soir de la réception auprès des baby-sitters.
+        </label>
+    </div>
+
+    <div class="field choice">
+        <input formControlName="needDriver"
+               id="driver"
+               name="driver"
+               type="checkbox"
+               value="true">
+        <label for="driver">
+            Nous souhaitons utiliser un service de chauffeur pour retourner à notre logement en fin de soirée.
+            Règlement en direct le soir de la réception auprès du chauffeur.
+        </label>
+    </div>
+
+    <div class="field choice">
+        <input formControlName="hasAllergy"
+               id="allergy"
+               name="allergy"
+               type="checkbox"
+               value="true">
+        <label for="allergy">
+            Nous souhaitons déclarer une allergie grave : en cochant cette case, une personne prendra contact
+            avec vous 1 mois avant le mariage afin de transmettre les bonnes informations au traiteur.
+        </label>
+    </div>
+
+    <h2>Musique</h2>
+
+    <p>
+        La seconde partie de soirée sera orchestrée par un DJ professionnel.
+        Nous serions heureux que vous partagiez vos préférences musicales afin de contribuer à l'élaboration
+        d'une atmosphère festive et dansante.
+    </p>
+
+    <br>
+
+    <div class="field text">
+        <input formControlName="favorite60sTube"
+               id="music60s"
+               type="text"
+               required>
+        <label for="music60s">Mon morceau 60s favori</label>
+    </div>
+
+    <div class="field text">
+        <input formControlName="favorite70sTube"
+               id="music70s"
+               type="text"
+               required>
+        <label for="music70s">Mon morceau 70s favori</label>
+    </div>
+
+    <div class="field text">
+        <input formControlName="favorite80sTube"
+               id="music80s"
+               type="text"
+               required>
+        <label for="music80s">Mon morceau 80s favori</label>
+    </div>
+
+    <div class="field text">
+        <input formControlName="favoriteContemporaryTube"
+               id="present_music"
+               type="text"
+               required>
+        <label for="present_music">Mon morceau récent favori</label>
+    </div>
+
+    <button id="submit_rsvp" class="save" type="submit">Enregistrer</button>
+</form>
+
+<app-rsvp-validation [@validation]="submitted ? 'show' : 'hide'" *ngIf="rsvp"></app-rsvp-validation>

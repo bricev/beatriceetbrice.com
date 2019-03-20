@@ -1,0 +1,80 @@
+#validation {
+    position: absolute;
+    top: 5em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 100;
+}
+
+video {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    background-color: transparent;
+    z-index: 200;
+}
+
+@supports (object-fit: cover) {
+    video {
+        width: 100% !important;
+        object-fit: cover;
+    }
+}
+
+#message {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 1em 2em 0 2em;
+    text-align: center;
+    color: #304183;
+    z-index: 300;
+}
+
+h2 {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 1.5em;
+    color: #f26152;
+    text-align: center !important;
+}
+
+@media (min-width: 35em)
+{
+    #validation {
+        top: 6em;
+    }
+
+    #message {
+        padding: 2em 3em;
+    }
+}
+
+@media (min-width: 68em)
+{
+    :host {
+        height: 29.75em; /** 16/9 height - 2x2em padding */
+    }
+
+    #validation {
+        top: 9em;
+        right: auto;
+        left: 50%;
+        width: 60em;
+        height: 33.75em; /** 16/9 height */
+        margin-left: -30em;
+    }
+
+    #message {
+        padding: 3em 4em;
+    }
+}
