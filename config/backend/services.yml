@@ -1,0 +1,26 @@
+imports:
+- { resource: settings.yml }
+
+services:
+  google:
+    class: Google_Client
+    calls:
+      - [setApplicationName, ['Wedding']]
+      - [setAuthConfig, ['%spreadSheetCredentials%']]
+      - [setScopes, [['https://www.googleapis.com/auth/spreadsheets']]]
+
+  guestlist:
+    public: true
+    class: Wedding\Infrastructure\Google\GuestlistSpreadsheet
+    arguments: ['@google', '%spreadSheetId%']
+
+  notebook:
+    public: true
+    class: Wedding\Infrastructure\Google\NotebookSpreadsheet
+    arguments: ['@google', '%spreadSheetId%']
+
+  stripe:
+    public: true
+    class: Stripe\Stripe
+    factory: Stripe\Stripe::setApiKey
+    arguments: ['%stripeSecretKey%']

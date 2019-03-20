@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 final class Services
 {
     const
-        CONFIG_DIRS = [__DIR__ . '/../../config'],
+        CONFIG_DIRS = [__DIR__ . '/../../../config/backend'],
         CONFIG_NAME = 'services.yml';
 
     /** @var self */
