@@ -6,6 +6,8 @@ import { HousingComponent } from './housing/housing.component';
 import { PlanningComponent } from './planning/planning.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonSuccessComponent } from './honeymoon-success/honeymoon-success.component';
+import { HoneymoonCancelComponent } from './honeymoon-cancel/honeymoon-cancel.component';
 
 const routes: Routes = [
     { path: 'location',  component: LocationComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
     { path: 'planning',  component: PlanningComponent },
     { path: 'rsvp',      component: RsvpComponent },
     { path: 'honeymoon', component: HoneymoonComponent },
+    { path: 'honeymoon/success', component: HoneymoonSuccessComponent },
+    { path: 'honeymoon/cancel',  component: HoneymoonCancelComponent },
     { path: '**',        component: HomeComponent, pathMatch: 'full' },
 ];
 

@@ -18,6 +18,8 @@ import { RsvpComponent } from './rsvp/rsvp.component';
 import { RsvpFormComponent } from './rsvp-form/rsvp-form.component';
 import { LoaderComponent } from './loader/loader.component';
 import { RsvpValidationComponent } from './rsvp-validation/rsvp-validation.component';
+import { HoneymoonSuccessComponent } from './honeymoon-success/honeymoon-success.component';
+import { HoneymoonCancelComponent } from './honeymoon-cancel/honeymoon-cancel.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,8 @@ import { RsvpValidationComponent } from './rsvp-validation/rsvp-validation.compo
         RsvpFormComponent,
         LoaderComponent,
         RsvpValidationComponent,
+        HoneymoonSuccessComponent,
+        HoneymoonCancelComponent,
     ],
     imports: [
         BrowserModule,
