@@ -8,11 +8,11 @@
         <input id="accept"
                name="confirmation"
                type="radio"
-               value="accept"
-               checked>
+               (change)="toggleDecline(false)"
+               [attr.checked]="null === rsvp.rsvp || rsvp.rsvp.comingGuests.length > 0 ? 'checked' : null">
         <label for="accept">OUI, je confirme la venue des personnes suivantes :</label>
 
-        <fieldset id="guest_list">
+        <fieldset id="guest_list" [hidden]="decline">
             <legend>Liste des convives</legend>
             <ul>
                 <li *ngFor="let guest of rsvpForm.controls['guests'].controls; let i=index">
@@ -29,13 +29,14 @@
         <input id="decline"
                name="confirmation"
                type="radio"
-               value="decline">
+               (change)="toggleDecline(true)"
+               [attr.checked]="null !== rsvp.rsvp && 0 === rsvp.rsvp.comingGuests.length ? 'checked' : null">
         <label for="decline">NON, personne ne pourra malheureusement venir</label>
     </div>
 
-    <h2>Services durant le mariage</h2>
+    <h2 [hidden]="decline">Services durant le mariage</h2>
 
-    <div class="field choice">
+    <div class="field choice" [hidden]="decline">
         <input formControlName="needBabysitter"
                id="babysitter"
                type="checkbox"
@@ -46,7 +47,7 @@
         </label>
     </div>
 
-    <div class="field choice">
+    <div class="field choice" [hidden]="decline">
         <input formControlName="needDriver"
                id="driver"
                name="driver"
@@ -58,7 +59,7 @@
         </label>
     </div>
 
-    <div class="field choice">
+    <div class="field choice" [hidden]="decline">
         <input formControlName="hasAllergy"
                id="allergy"
                name="allergy"
@@ -70,9 +71,9 @@
         </label>
     </div>
 
-    <h2>Musique</h2>
+    <h2 [hidden]="decline">Musique</h2>
 
-    <p>
+    <p [hidden]="decline">
         La seconde partie de soirée sera orchestrée par un DJ professionnel.
         Nous serions heureux que vous partagiez vos préférences musicales afin de contribuer à l'élaboration
         d'une atmosphère festive et dansante.
@@ -80,7 +81,7 @@
 
     <br>
 
-    <div class="field text">
+    <div class="field text" [hidden]="decline">
         <input formControlName="favorite60sTube"
                id="music60s"
                type="text"
@@ -88,7 +89,7 @@
         <label for="music60s">Mon morceau 60s favori</label>
     </div>
 
-    <div class="field text">
+    <div class="field text" [hidden]="decline">
         <input formControlName="favorite70sTube"
                id="music70s"
                type="text"
@@ -96,7 +97,7 @@
         <label for="music70s">Mon morceau 70s favori</label>
     </div>
 
-    <div class="field text">
+    <div class="field text" [hidden]="decline">
         <input formControlName="favorite80sTube"
                id="music80s"
                type="text"
@@ -104,7 +105,7 @@
         <label for="music80s">Mon morceau 80s favori</label>
     </div>
 
-    <div class="field text">
+    <div class="field text" [hidden]="decline">
         <input formControlName="favoriteContemporaryTube"
                id="present_music"
                type="text"
@@ -115,4 +116,4 @@
     <button id="submit_rsvp" class="save" type="submit">Enregistrer</button>
 </form>
 
-<app-rsvp-validation [@validation]="submitted ? 'show' : 'hide'" *ngIf="rsvp"></app-rsvp-validation>
+<app-rsvp-validation [decline]="decline" [@validation]="submitted ? 'show' : 'hide'" *ngIf="rsvp"></app-rsvp-validation>

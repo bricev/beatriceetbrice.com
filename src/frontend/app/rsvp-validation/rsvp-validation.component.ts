@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 
 @Component({
     selector: 'app-rsvp-validation',
@@ -6,6 +6,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
     styleUrls: ['./rsvp-validation.component.css']
 })
 export class RsvpValidationComponent implements OnInit, AfterViewInit {
+
+    @Input() decline: boolean;
 
     @ViewChild('validationVideo') video: ElementRef;
 

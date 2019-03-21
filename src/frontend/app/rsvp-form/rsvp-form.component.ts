@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Confirmation, Rsvp } from '../rsvp/rsvp';
@@ -40,6 +40,7 @@ export class RsvpFormComponent implements OnInit, OnChanges {
     @Input() rsvp: Rsvp;
 
     guests = [];
+    decline = false;
     submitted = false;
 
     rsvpForm = new FormGroup({
@@ -60,13 +61,17 @@ export class RsvpFormComponent implements OnInit, OnChanges {
 
     ngOnInit() {}
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: {rsvp: SimpleChange}) {
         const change: SimpleChange = changes.rsvp;
         if (null === change.currentValue) {
             return;
         }
 
         const rsvp: Rsvp = change.currentValue;
+
+        this.rsvpForm.patchValue({
+            identifier: rsvp.group.identifier
+        });
 
         const guestArray = new FormArray([]);
         for (const guest of rsvp.group.guests) {
@@ -86,8 +91,9 @@ export class RsvpFormComponent implements OnInit, OnChanges {
             );
         }
 
+        this.decline = (0 === rsvp.rsvp.comingGuests.length);
+
         this.rsvpForm.patchValue({
-            identifier: rsvp.group.identifier,
             guests: guestArray.getRawValue(),
             needBabysitter: rsvp.rsvp.needBabysitter,
             needDriver: rsvp.rsvp.needDriver,
@@ -99,12 +105,21 @@ export class RsvpFormComponent implements OnInit, OnChanges {
         });
     }
 
-    saveRsvp() {
-        const rsvp = this.rsvpForm.getRawValue();
+    toggleDecline(state) {
+        this.decline = state;
+    }
 
-        rsvp.comingGuests = [];
-        for (let i = 0; i < this.guests.length; i++) {
-            if (true === rsvp.guests[i]) {
+    saveRsvp() {
+
+        const rsvp = this.rsvpForm.getRawValue();
+              rsvp.comingGuests = [];
+
+        if (!this.decline) {
+            for (let i = 0; i < this.guests.length; i++) {
+                if (!rsvp.guests[i]) {
+                    continue;
+                }
+
                 rsvp.comingGuests.push(this.guests[i]);
             }
         }
@@ -114,7 +129,7 @@ export class RsvpFormComponent implements OnInit, OnChanges {
         this.rsvpService.postRsvp(rsvp as Confirmation).subscribe(next => {
             this.submitted = true;
 
-        }, err => {
+        }, error => {
             alert(
                 'Désolé, un problème est survenu. \n' +
                 'Merci d\'essayer plus tard et/ou de nous prévenir à l\'adresse mariage@beatriceetbrice.com.'
