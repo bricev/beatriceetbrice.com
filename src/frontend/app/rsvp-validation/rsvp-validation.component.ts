@@ -1,13 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-rsvp-validation',
     templateUrl: './rsvp-validation.component.html',
     styleUrls: ['./rsvp-validation.component.css']
 })
-export class RsvpValidationComponent implements OnInit {
+export class RsvpValidationComponent implements OnInit, AfterViewInit {
+
+    @ViewChild('validationVideo') video: ElementRef;
 
     constructor() {}
 
     ngOnInit() {}
+
+    ngAfterViewInit() {
+        this.video.nativeElement.addEventListener('loadedmetadata', event => {
+            this.video.nativeElement.muted = true;
+        });
+        this.video.nativeElement.addEventListener('canplaythrough', event => {
+            this.video.nativeElement.muted = true;
+        });
+
+        this.video.nativeElement.addEventListener('canplay', event => {
+            this.video.nativeElement.play();
+        });
+    }
 }

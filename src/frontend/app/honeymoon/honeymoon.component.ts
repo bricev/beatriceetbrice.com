@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CheckoutService } from './checkout.service';
 
 @Component({
@@ -10,8 +10,9 @@ import { CheckoutService } from './checkout.service';
         './honeymoon.component.css'
     ]
 })
+export class HoneymoonComponent implements OnInit, AfterViewInit {
 
-export class HoneymoonComponent implements OnInit {
+    @ViewChild('honeymoonVideo') video: ElementRef;
 
     constructor(
         private checkout: CheckoutService
@@ -23,4 +24,17 @@ export class HoneymoonComponent implements OnInit {
     }
 
     ngOnInit() {}
+
+    ngAfterViewInit() {
+        this.video.nativeElement.addEventListener('loadedmetadata', event => {
+            this.video.nativeElement.muted = true;
+        });
+        this.video.nativeElement.addEventListener('canplaythrough', event => {
+            this.video.nativeElement.muted = true;
+        });
+
+        this.video.nativeElement.addEventListener('canplay', event => {
+            this.video.nativeElement.play();
+        });
+    }
 }
