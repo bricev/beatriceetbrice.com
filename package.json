@@ -19,8 +19,12 @@
     "@angular/platform-browser": "^7.2.10",
     "@angular/platform-browser-dynamic": "^7.2.10",
     "@angular/router": "^7.2.10",
+    "angular-polyfills": "^1.0.1",
+    "console-polyfill": "^0.3.0",
     "core-js": "^2.5.4",
+    "ie9-oninput-polyfill": "^1.1.1",
     "rxjs": "~6.3.3",
+    "setprototypeof": "^1.1.1",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26"
