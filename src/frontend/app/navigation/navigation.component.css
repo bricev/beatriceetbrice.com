@@ -5,6 +5,7 @@ nav button {
     text-align: center;
     font-size: 1.2em;
     color: #304183;
+    background-color: transparent;
     cursor: pointer;
 }
 
